@@ -25,3 +25,5 @@ jobs:
 
       - name: terraform plan
         run: terraform plan -input=false -no-color
+        env:
+          TF_VAR_app_pem_file: ${{ secrets.TF_VAR_app_pem_file }}
