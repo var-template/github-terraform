@@ -10,7 +10,7 @@ terraform {
 locals {
   github_organization = "var-template"
   app_id              = "4244361"
-  app_installation_id = "Iv23ctKOEm5D6o1ooeyq"
+  app_installation_id = "145146379"
 }
 
 module "members" {
