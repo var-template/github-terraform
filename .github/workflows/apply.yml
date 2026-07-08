@@ -1,0 +1,24 @@
+name: apply.yml
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  apply:
+    name: Terraform Apply
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup terraform
+        uses: hashicorp/setup-terraform@v4
+
+      - name: terraform init
+        run: terraform init
+
+      - name: terraform apply
+        run: terraform apply
+        env:
+          TF_VAR_app_pem_file: ${{ secrets.TF_VAR_app_pem_file }}
