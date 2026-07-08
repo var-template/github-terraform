@@ -1,4 +1,24 @@
 name: plan.yml
 on:
+  pull_request:
+    branches: ["*"]
 
 jobs:
+  plan:
+    name: Terraform Plan
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup terraform
+        uses: hashicorp/setup-terraform@v4
+
+      - name: terraform fmt
+        run: terraform fmt -check -recursive
+
+      - name: terraform validate
+        run: terraform validate -no-color
+
+      - name: terraform plan
+        run: terraform plan -input=false -no-color
