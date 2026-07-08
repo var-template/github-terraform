@@ -14,6 +14,9 @@ jobs:
       - name: Setup terraform
         uses: hashicorp/setup-terraform@v4
 
+      - name: terraform init
+        run: terraform init
+
       - name: terraform fmt
         run: terraform fmt -check -recursive
 
