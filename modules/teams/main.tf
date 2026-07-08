@@ -4,15 +4,11 @@ resource "github_team" "ctos" {
 }
 
 resource "github_team_members" "ctos_members" {
-  team_id = github_team.ctos.id
+  team_id  = github_team.ctos.id
+  for_each = var.teams["ctos"].members
 
   members {
-    username = "tsuji-riya"
-    role     = "maintainer"
-  }
-
-  members {
-    username = "proto08"
-    role     = "maintainer"
+    username = each.value.username
+    role     = each.value.role
   }
 }

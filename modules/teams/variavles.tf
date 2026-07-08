@@ -1,8 +1,3 @@
-variable "app_pem_file" {
-  type      = string
-  sensitive = true
-}
-
 variable "members" {
   type = map(object({
     username = string

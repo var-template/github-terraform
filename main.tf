@@ -13,6 +13,16 @@ locals {
   app_installation_id = "Iv23ctKOEm5D6o1ooeyq"
 }
 
+module "members" {
+  source = "./modules/members"
+
+  members = var.members
+}
+
 module "teams" {
   source = "./modules/teams"
+
+  members = var.members
+  teams   = var.teams
 }
+
