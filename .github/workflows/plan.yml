@@ -14,6 +14,14 @@ jobs:
       - name: Setup terraform
         uses: hashicorp/setup-terraform@v4
 
+      - name: Manage tfstate with MongoDB
+        uses: tsuji-riya/tfstate-loves-mongo@v1.2.3
+        with:
+          mongo-uri: ${{ secrets.MONGO_URI }}
+          database: tfstate
+          collection: vartemplate
+          destination: ./terraform.tfstate
+
       - name: terraform init
         run: terraform init
 
