@@ -22,6 +22,6 @@ module "members" {
 module "teams" {
   source = "./modules/teams"
 
-  teams   = var.teams
+  teams = var.teams
 }
 
