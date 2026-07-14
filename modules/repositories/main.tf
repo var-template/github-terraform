@@ -80,7 +80,7 @@ resource "github_repository_ruleset" "main_protection" {
       strict_required_status_checks_policy = try(each.value.strict_status_checks, true)
 
       dynamic "required_check" {
-        for_each = try(each.value.required_status_checks, "ci")
+        for_each = try(each.value.required_status_checks, [])
         content {
           context = required_check.value
         }
