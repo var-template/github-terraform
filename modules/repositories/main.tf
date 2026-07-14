@@ -19,10 +19,10 @@ resource "github_repository" "this" {
   has_projects = try(each.value.has_projects, false)
   has_wiki     = try(each.value.has_wiki, false)
 
-  allow_merge_commit      = try(each.value.allow_merge_commit, false)
-  allow_squash_merge      = try(each.value.allow_squash_merge, true)
-  allow_rebase_merge      = try(each.value.allow_rebase_merge, false)
-  delete_branch_on_merge  = true
+  allow_merge_commit        = try(each.value.allow_merge_commit, false)
+  allow_squash_merge        = try(each.value.allow_squash_merge, true)
+  allow_rebase_merge        = try(each.value.allow_rebase_merge, false)
+  delete_branch_on_merge    = true
   squash_merge_commit_title = "PR_TITLE"
 
   auto_init = true
@@ -30,7 +30,7 @@ resource "github_repository" "this" {
   lifecycle {
     # 誤ってterraform destroy/apply時にリポジトリごと消えるのを防ぐ
     prevent_destroy = true
-    ignore_changes  = [
+    ignore_changes = [
       # README等をauto_init後に手動編集しても差分検知しない
       auto_init,
     ]
@@ -38,7 +38,7 @@ resource "github_repository" "this" {
 }
 
 resource "github_repository_vulnerability_alerts" "this" {
-  for_each = local.repositories
+  for_each   = local.repositories
   repository = github_repository.this[each.key].name
   enabled    = true
 }
