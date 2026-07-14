@@ -1,9 +1,5 @@
 description: "This organization's manage"
 visibility: public
 
-has_issue: true
-has_projects: false
-has_wiki: false
-
 required_status_checks:
   - "Terraform Plan"

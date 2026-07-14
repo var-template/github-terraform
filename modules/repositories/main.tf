@@ -5,6 +5,11 @@ locals {
     for f in local.repo_config_files :
     dirname(f) => yamldecode(file("${path.module}/${f}"))
   }
+
+  effective_status_checks = {
+    for name, cfg in local.repositories :
+    name => coalesce(lookup(cfg, "required_status_checks", null), [])
+  }
 }
 
 resource "github_repository" "this" {
@@ -76,13 +81,17 @@ resource "github_repository_ruleset" "main_protection" {
       required_review_thread_resolution = try(each.value.required_review_thread_resolution, true)
     }
 
-    required_status_checks {
-      strict_required_status_checks_policy = try(each.value.strict_status_checks, true)
+    dynamic "required_status_checks" {
+      for_each = length(local.effective_status_checks[each.key]) > 0 ? [local.effective_status_checks[each.key]] : []
 
-      dynamic "required_check" {
-        for_each = try(each.value.required_status_checks, [])
-        content {
-          context = required_check.value
+      content {
+        strict_required_status_checks_policy = try(each.value.strict_status_checks, true)
+
+        dynamic "required_check" {
+          for_each = required_status_checks.value
+          content {
+            context = required_check.value
+          }
         }
       }
     }

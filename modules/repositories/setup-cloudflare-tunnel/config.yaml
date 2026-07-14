@@ -1,8 +1,4 @@
 description: "GitHub Actions Setup Cloudflare Tunnel"
 visibility: public
 
-has_issue: true
-has_projects: false
-has_wiki: false
-
 strict_status_checks: false
