@@ -25,3 +25,6 @@ module "teams" {
   teams = var.teams
 }
 
+module "repositories" {
+  source = "./modules/repositories"
+}

@@ -1,0 +1,5 @@
+description: "This organization's manage"
+visibility: public
+
+required_status_checks:
+  - "Terraform Plan"

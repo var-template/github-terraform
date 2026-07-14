@@ -1,0 +1,19 @@
+description: "リポジトリの説明文"
+visibility: private        # private / internal / public
+
+topics:
+  - backend
+  - example
+
+has_issues: true
+has_projects: false
+has_wiki: false
+
+allow_merge_commit: false
+allow_squash_merge: true
+allow_rebase_merge: false
+
+required_approving_review_count: 1
+require_code_owner_review: false
+required_status_checks:
+  - "ci"           # GitHub Actionsのjob名 or ステータスチェック名
